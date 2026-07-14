@@ -1,4 +1,4 @@
-
+cat > server.js << 'EOF'
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
@@ -11,7 +11,7 @@ const companyRoutes = require('./src/routes/companyRoutes');
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// CORS configuration - Allow frontend URLs
+// CORS configuration - Allow all origins in production
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
@@ -25,11 +25,11 @@ app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
       callback(null, true);
     } else {
       console.log('Blocked origin:', origin);
-      callback(null, true); // Allow all in development
+      callback(null, true); // Allow all in production temporarily
     }
   },
   credentials: true
@@ -66,9 +66,10 @@ app.use((err, req, res, next) => {
 const startServer = async () => {
   try {
     await connectDB();
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`🚀 BridgeHub Backend running on http://localhost:${PORT}`);
       console.log(`📊 Health: http://localhost:${PORT}/api/health`);
+      console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
     });
   } catch (error) {
     console.error('Failed to start server:', error.message);
@@ -77,3 +78,4 @@ const startServer = async () => {
 };
 
 startServer();
+EOF

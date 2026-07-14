@@ -1,9 +1,10 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
+// Use DATABASE_URL from environment
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
-  logging: false,
+  logging: process.env.NODE_ENV === 'development' ? console.log : false,
   dialectOptions: {
     ssl: {
       require: true,
@@ -16,8 +17,14 @@ const connectDB = async () => {
   try {
     await sequelize.authenticate();
     console.log('✅ PostgreSQL Connected Successfully');
-    await sequelize.sync({ alter: true });
-    console.log('✅ Database Synced');
+    
+    // Only sync in development, use migrations in production
+    if (process.env.NODE_ENV === 'development') {
+      await sequelize.sync({ alter: true });
+      console.log('✅ Database Synced');
+    } else {
+      console.log('✅ Database ready (production mode)');
+    }
   } catch (error) {
     console.error('❌ Database Error:', error.message);
     process.exit(1);
