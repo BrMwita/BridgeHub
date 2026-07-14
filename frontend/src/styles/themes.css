@@ -1,0 +1,24 @@
+/* Light Theme (Default) */
+:root {
+  --background: #ffffff;
+  --surface: #f8fafc;
+  --text: #111827;
+  --text-light: #6b7280;
+  --border: #d1d5db;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --background: #0f172a;
+  --surface: #1e293b;
+  --text: #f8fafc;
+  --text-light: #94a3b8;
+  --border: #334155;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth theme transition */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

@@ -1,0 +1,24 @@
+.app {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text);
+  transition: all var(--transition);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
+  color: var(--text-light);
+}
+
+/* Toast overrides */
+.go3958317564 {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
