@@ -1,0 +1,85 @@
+📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+👨‍💻 Author
+Brian Mwita
+
+GitHub: @BrMwita
+
+🙏 Acknowledgments
+Built with ❤️ in Kenya
+
+Thanks to all open-source contributors
+
+Special thanks to the Neon team for free PostgreSQL hosting
+
+📊 Project Status
+This is an MVP (Minimum Viable Product). Future features planned:
+
+✅ Authentication & User Profiles
+
+✅ Job Posting & Applications
+
+✅ Company Profiles
+
+⏳ Real-time Chat
+
+⏳ Project Collaboration
+
+⏳ Event Management
+
+⏳ AI-powered Recommendations
+
+Made with ❤️ in Kenya
+
+text
+
+### 📄 Adding an MIT License
+
+Create a `LICENSE` file in your project root with the following content:
+MIT License
+
+Copyright (c) 2026 Brian Mwita
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+text
+
+### 🚢 Preparing for Deployment
+
+To deploy on Render and Vercel, create these files:
+
+#### For Render (Backend)
+Create a `render.yaml` in the root:
+
+```yaml
+services:
+  - type: web
+    name: bridgehub-backend
+    runtime: node
+    repo: https://github.com/BrMwita/BridgeHub
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: NODE_ENV
+        value: production
